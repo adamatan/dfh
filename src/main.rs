@@ -75,6 +75,7 @@ fn render_bar(pct: f64, width: usize, color: bool) -> String {
 }
 
 /// disk3s1s1 -> disk3, disk3s7 -> disk3
+#[cfg(target_os = "macos")]
 fn container_disk(device: &str) -> &str {
     let name = device.strip_prefix("/dev/").unwrap_or(device);
     let bytes = name.as_bytes();
@@ -298,7 +299,7 @@ fn get_mounts() -> Vec<MountInfo> {
             continue;
         }
 
-        let frsize = stat.f_frsize as u64;
+        let frsize: u64 = stat.f_frsize.try_into().unwrap_or(0);
         let total = stat.f_blocks * frsize;
         let used = (stat.f_blocks.saturating_sub(stat.f_bfree)) * frsize;
         let free = stat.f_bavail * frsize;
