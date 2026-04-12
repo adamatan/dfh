@@ -299,7 +299,9 @@ fn get_mounts() -> Vec<MountInfo> {
             continue;
         }
 
-        let frsize: u64 = stat.f_frsize.try_into().unwrap_or(0);
+        // as u64 needed on 32-bit Linux where f_frsize is u32
+        #[allow(clippy::unnecessary_cast)]
+        let frsize = stat.f_frsize as u64;
         let total = stat.f_blocks * frsize;
         let used = (stat.f_blocks.saturating_sub(stat.f_bfree)) * frsize;
         let free = stat.f_bavail * frsize;
