@@ -1,0 +1,16 @@
+[package]
+name = "dfh"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Human-readable disk usage with colorized bars, physical disk grouping, and system volume annotations"
+repository = "https://github.com/adamatan/dfh"
+
+[dependencies]
+libc = "0.2"
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+panic = "abort"
