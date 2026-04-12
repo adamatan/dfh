@@ -1,7 +1,5 @@
 # dfh
 
-[![Test and Release](https://github.com/adamatan/dfh/actions/workflows/test_and_release.yml/badge.svg)](https://github.com/adamatan/dfh/actions/workflows/test_and_release.yml)
-
 Human-readable disk usage with colorized bars, physical disk grouping, and system volume annotations. A `df -h` replacement for people who want to understand their storage at a glance.
 
 ## Install
