@@ -1,3 +1,8 @@
+[workspace]
+# cargo-dist owns GitHub Release creation (it attaches the binaries).
+# release-plz still pushes the tag, bumps Cargo.toml, and publishes to crates.io.
+git_release_enable = false
+
 [changelog]
 commit_parsers = [
     { message = "^feat", group = "Features" },
